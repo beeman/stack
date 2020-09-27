@@ -18,6 +18,7 @@ export function apiFileTests(project: string): FileTests {
     existing: [
       `.env`,
       `.env.example`,
+      `.github/workflows/build-test.yml`,
       `apps/${project}/src/main.ts`,
       `apps/${project}/src/app/app.module.ts`,
       ...apiCrudFiles(project, 'feature-auth'),
