@@ -39,7 +39,8 @@ export default function (options: InitSchematicSchema): Rule {
     addDepsToPackageJson({}, { husky: '^4.3.0', 'lint-staged': '^10.4.0' }, true),
     updatePrettierConfig(),
     configureHuskyLintStaged(),
-    externalSchematic('@nxpm/ci', 'github', {}),
+    // TODO: Figure out how to correctly run this schematic
+    // externalSchematic('@nxpm/ci', 'github', {}),
     schematic('api', { name: 'api' }),
     schematic('admin', { name: options.name }),
     addRunScript('start', 'node dist/apps/api/main.js', true),

@@ -18,7 +18,6 @@ export function apiFileTests(project: string): FileTests {
     existing: [
       `.env`,
       `.env.example`,
-      `.github/workflows/build-test.yml`,
       `apps/${project}/src/main.ts`,
       `apps/${project}/src/app/app.module.ts`,
       ...apiCrudFiles(project, 'feature-auth'),
@@ -30,8 +29,11 @@ export function apiFileTests(project: string): FileTests {
     ],
     missing: [`apps/${project}/src/app/app.controller.ts`, `apps/.gitkeep`, `libs/.gitkeep`],
     contain: {
+      // Verify that .env got added to gitignore
       [`.gitignore`]: [`.env`],
+      // Verify that we are linking to the GraphQL endpoint
       [`apps/${project}/src/main.ts`]: [`Logger.log('Listening at http://localhost:' + port + '/graphql')`],
+      // Verify that we set up the ConfigModule and GraphQLModule
       [`libs/${project}/feature-core/src/lib/${project}-feature-core.module.ts`]: [
         `ConfigModule.forRoot`,
         `GraphQLModule.forRoot`,
